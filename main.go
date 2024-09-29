@@ -9,10 +9,7 @@ import (
 )
 
 type Data struct {
-	Name   string `json:"name"`
-	Age    int    `json:"age"`
-	Gender string `json:"gender"`
-	Token  string `json:"token"`
+	Token string `json:"token"`
 }
 
 func main() {
@@ -32,9 +29,10 @@ func main() {
 	if err1 != nil {
 		fmt.Println(err1, "er two")
 	}
-	bodyString := string(body)
-	fmt.Println(bodyString)
-
-	// Unmarshal the byte array into the 'person' variable.
-
+	var v []map[string]interface{}
+	err3 := json.Unmarshal(body, &v)
+	fmt.Println(err3)
+	for k, val := range v[0] {
+		fmt.Println(k, " - ", val)
+	}
 }
